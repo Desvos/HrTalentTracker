@@ -1,8 +1,18 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import axios from 'axios';
 
-async function throwIfResNotOk(res: Response) {
-  if (!res.ok) {
-    const text = (await res.text()) || res.statusText;
+// Configurazione di axios
+const api = axios.create({
+  baseURL: 'http://localhost:5000',
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+async function throwIfResNotOk(res: any) {
+  if (res.status >= 400) {
+    const text = res.data || res.statusText;
     throw new Error(`${res.status}: ${text}`);
   }
 }
@@ -11,16 +21,29 @@ export async function apiRequest(
   method: string,
   url: string,
   data?: unknown | undefined,
-): Promise<Response> {
-  const res = await fetch(url, {
-    method,
-    headers: data ? { "Content-Type": "application/json" } : {},
-    body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
-  });
+): Promise<any> {
+  try {
+    console.log('API Request:', { method, url, data });
+    const res = await api({
+      method,
+      url,
+      data: data ? data : undefined,
+    });
+    console.log('API Response:', res);
 
-  await throwIfResNotOk(res);
-  return res;
+    await throwIfResNotOk(res);
+    return res;
+  } catch (error: any) {
+    console.error('API Error:', {
+      error,
+      message: error?.message || 'Unknown error',
+      response: error?.response?.data
+    });
+    if (axios.isAxiosError(error)) {
+      throw new Error(`${error.response?.status}: ${error.response?.data || error.message}`);
+    }
+    throw error;
+  }
 }
 
 type UnauthorizedBehavior = "returnNull" | "throw";
@@ -30,9 +53,7 @@ export const getQueryFn: <T>(options: {
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
     try {
-      const res = await fetch(queryKey[0] as string, {
-        credentials: "include",
-      });
+      const res = await api.get(queryKey[0] as string);
 
       if (res.status === 401) {
         if (unauthorizedBehavior === "returnNull") {
@@ -42,15 +63,10 @@ export const getQueryFn: <T>(options: {
         }
       }
 
-      if (!res.ok) {
-        const text = (await res.text()) || res.statusText;
-        throw new Error(`${res.status}: ${text}`);
-      }
-      
-      return await res.json();
+      return res.data;
     } catch (error) {
       console.error('Query error:', error);
-      if (unauthorizedBehavior === "returnNull") {
+      if (axios.isAxiosError(error) && error.response?.status === 401 && unauthorizedBehavior === "returnNull") {
         return null;
       }
       throw error;

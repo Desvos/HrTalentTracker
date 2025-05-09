@@ -50,19 +50,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
+      console.log('Attempting login with:', { email });
       const response = await apiRequest('POST', '/api/auth/login', { email, password });
-      const data = await response.json();
+      console.log('Login response:', response);
       
-      if (data.user) {
-        setUser(data.user);
+      if (response.data.user) {
+        setUser(response.data.user);
         // Store user in localStorage for mock persistence
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         return true;
       }
       
       return false;
-    } catch (error) {
-      console.error('Login error:', error);
+    } catch (error: any) {
+      console.error('Login error details:', {
+        error,
+        message: error?.message || 'Unknown error',
+        response: error?.response?.data
+      });
       return false;
     }
   };

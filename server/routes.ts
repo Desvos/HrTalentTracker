@@ -13,19 +13,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email, password } = req.body;
       
+      console.log('Login attempt:', { email, password });
+      
       if (!email || !password) {
+        console.log('Missing credentials');
         return res.status(400).json({ message: "Email and password are required" });
       }
 
       const user = await storage.getUserByEmail(email);
+      console.log('User found:', user ? 'yes' : 'no');
       
-      if (!user || user.password !== password) {
+      if (!user) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      // Verifica la password (in un'app reale, usa bcrypt o simili)
+      console.log('Password check:', { 
+        provided: password, 
+        stored: user.password,
+        match: user.password === password 
+      });
+      
+      if (user.password !== password) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
       // In a real app, you would use proper authentication with JWT or sessions
       // For this mock, we'll just return the user without the password
       const { password: _, ...userWithoutPassword } = user;
+      
+      // Set session cookie
+      req.session.userId = user.id;
+      
+      console.log('Login successful for user:', userWithoutPassword);
       
       return res.status(200).json({ 
         message: "Login successful",

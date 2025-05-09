@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { useQuery } from '@tanstack/react-query';
 import AppLayout from '@/components/layout/AppLayout';
 import CandidateMap from '@/components/dashboard/CandidateMap';
 import CandidateFilters from '@/components/dashboard/CandidateFilters';
@@ -16,35 +15,36 @@ const DashboardPage = () => {
     institution?: string;
   }>({});
   
-  // Construct API URL with filters
-  const getApiUrl = () => {
-    const baseUrl = '/api/candidates';
-    const params = new URLSearchParams();
-    
-    if (filters.role) params.append('role', filters.role);
-    if (filters.skill) params.append('skill', filters.skill);
-    if (filters.institution) params.append('institution', filters.institution);
-    
-    const queryString = params.toString();
-    return queryString ? `${baseUrl}?${queryString}` : baseUrl;
-  };
-  
-  // Fetch candidates with filters
-  const {
-    data: candidates = [],
-    isLoading,
-    isError,
-    refetch
-  } = useQuery<Candidate[]>({
-    queryKey: [getApiUrl()],
-    refetchOnWindowFocus: false,
-    retry: false
-  });
-  
-  // Refetch when filters change
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  // Fetch candidates solo all'avvio della pagina
   useEffect(() => {
-    refetch();
-  }, [filters, refetch]);
+    const fetchCandidates = async () => {
+      try {
+        setIsLoading(true);
+        const response = await apiRequest('GET', '/api/candidates');
+        setCandidates(response.data);
+        setIsError(false);
+      } catch (error) {
+        console.error('Error fetching candidates:', error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCandidates();
+  }, []); // Array vuoto = solo all'avvio
+
+  // Filtra i candidati lato client
+  const filteredCandidates = candidates.filter(candidate => {
+    if (filters.role && candidate.role !== filters.role) return false;
+    if (filters.skill && !candidate.skills.includes(filters.skill)) return false;
+    if (filters.institution && !candidate.education.some(edu => edu.institutionName === filters.institution)) return false;
+    return true;
+  });
   
   const handleFilterChange = (newFilters: { role?: string; skill?: string; institution?: string }) => {
     setFilters(newFilters);
@@ -74,9 +74,9 @@ const DashboardPage = () => {
         </div>
       ) : (
         <>
-          <CandidateMap candidates={candidates} />
+          <CandidateMap candidates={filteredCandidates} />
           <MapLegend />
-          <CandidateTable candidates={candidates} />
+          <CandidateTable candidates={filteredCandidates} />
         </>
       )}
     </AppLayout>

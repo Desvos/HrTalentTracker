@@ -1,11 +1,42 @@
 import express, { type Request, Response, NextFunction } from "express";
+import session from 'express-session';
+import cors from 'cors';
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { storage } from "./storage";
 
 const app = express();
+
+// Configurazione CORS
+app.use(cors({
+  origin: 'http://localhost:5173', // URL del frontend Vite
+  credentials: true, // Necessario per i cookie di sessione
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Configurazione di express-session
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000, // 24 ore
+    sameSite: 'lax'
+  }
+}));
+
+// Estendi il tipo Request per includere session
+declare module 'express-session' {
+  interface SessionData {
+    userId: number;
+  }
+}
 
 app.use((req, res, next) => {
   const start = Date.now();

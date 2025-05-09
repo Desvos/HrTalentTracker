@@ -119,19 +119,8 @@ export class DatabaseStorage implements IStorage {
     skill?: string;
     institution?: string;
   }): Promise<Candidate[]> {
-    // First get candidates with basic filtering
-    let baseQuery = db.select().from(candidates);
-    
-    // Apply role filter at DB level if possible
-    if (filters.role) {
-      // Use case-insensitive partial text matching instead of exact matching
-      baseQuery = baseQuery.where(
-        sql`lower(${candidates.role}) like lower(${'%' + filters.role + '%'})`
-      );
-    }
-    
-    // Get properly typed candidate results
-    const typedCandidates = (await baseQuery).map(candidate => ({
+    // Get all candidates first
+    const typedCandidates = (await db.select().from(candidates)).map(candidate => ({
       id: candidate.id,
       name: candidate.name,
       role: candidate.role,
@@ -141,6 +130,14 @@ export class DatabaseStorage implements IStorage {
     }));
     
     let results = typedCandidates;
+    
+    // Filter by role (case-insensitive partial match)
+    if (filters.role) {
+      const searchTerm = filters.role.toLowerCase();
+      results = results.filter(candidate => 
+        candidate.role.toLowerCase().includes(searchTerm)
+      );
+    }
     
     // Filter by skill (done in memory since it's a JSON array)
     if (filters.skill) {
