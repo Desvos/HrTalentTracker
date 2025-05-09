@@ -26,9 +26,9 @@ const CandidateFilters = ({ onFilterChange }: CandidateFiltersProps) => {
     skills: [],
     institutions: []
   });
-  const [selectedRole, setSelectedRole] = useState<string>('');
-  const [selectedSkill, setSelectedSkill] = useState<string>('');
-  const [selectedInstitution, setSelectedInstitution] = useState<string>('');
+  const [selectedRole, setSelectedRole] = useState<string>('all_roles');
+  const [selectedSkill, setSelectedSkill] = useState<string>('all_skills');
+  const [selectedInstitution, setSelectedInstitution] = useState<string>('all_institutions');
   const [isLoading, setIsLoading] = useState(true);
   
   // Fetch filter data (unique roles, skills, and institutions)
@@ -52,9 +52,9 @@ const CandidateFilters = ({ onFilterChange }: CandidateFiltersProps) => {
   // Handle filter changes
   useEffect(() => {
     const filters = {
-      role: selectedRole || undefined,
-      skill: selectedSkill || undefined,
-      institution: selectedInstitution || undefined
+      role: selectedRole === 'all_roles' ? undefined : selectedRole,
+      skill: selectedSkill === 'all_skills' ? undefined : selectedSkill,
+      institution: selectedInstitution === 'all_institutions' ? undefined : selectedInstitution
     };
     
     onFilterChange(filters);
@@ -75,7 +75,7 @@ const CandidateFilters = ({ onFilterChange }: CandidateFiltersProps) => {
                 <SelectValue placeholder="All Roles" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Roles</SelectItem>
+                <SelectItem value="all_roles">All Roles</SelectItem>
                 {filterData.roles.map((role) => (
                   <SelectItem key={role} value={role}>{role}</SelectItem>
                 ))}
@@ -94,7 +94,7 @@ const CandidateFilters = ({ onFilterChange }: CandidateFiltersProps) => {
                 <SelectValue placeholder="All Skills" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Skills</SelectItem>
+                <SelectItem value="all_skills">All Skills</SelectItem>
                 {filterData.skills.map((skill) => (
                   <SelectItem key={skill} value={skill}>{skill}</SelectItem>
                 ))}
@@ -113,7 +113,7 @@ const CandidateFilters = ({ onFilterChange }: CandidateFiltersProps) => {
                 <SelectValue placeholder="All Institutions" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Institutions</SelectItem>
+                <SelectItem value="all_institutions">All Institutions</SelectItem>
                 {filterData.institutions.map((institution) => (
                   <SelectItem key={institution} value={institution}>{institution}</SelectItem>
                 ))}
