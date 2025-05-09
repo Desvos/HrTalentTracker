@@ -25,56 +25,60 @@ const AppBar = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/">
-                <a className="flex items-center">
+              <Link href="/" className="flex items-center">
                   <MapPin className="h-8 w-8 text-primary" />
                   <span className="ml-2 text-xl font-bold">HR Talent Mapper</span>
-                </a>
               </Link>
             </div>
             <nav className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link href="/">
-                <a className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+              <Link 
+                href="/"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   location === '/' && !isAuthenticated ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                }`}>
-                  Home
-                </a>
+                }`}
+              >
+                Home
               </Link>
-              <Link href="/features">
-                <a className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+              <Link 
+                href="/features"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   location === '/features' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                }`}>
-                  Funzionalità
-                </a>
+                }`}
+              >
+                Funzionalità
               </Link>
-              <Link href="/pricing">
-                <a className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+              <Link 
+                href="/pricing"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   location === '/pricing' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                }`}>
-                  Prezzi
-                </a>
+                }`}
+              >
+                Prezzi
               </Link>
-              <Link href="/about">
-                <a className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+              <Link 
+                href="/about"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   location === '/about' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                }`}>
-                  Chi siamo
-                </a>
+                }`}
+              >
+                Chi siamo
               </Link>
-              <Link href="/contact">
-                <a className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+              <Link 
+                href="/contact"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   location === '/contact' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                }`}>
-                  Contatti
-                </a>
+                }`}
+              >
+                Contatti
               </Link>
               {isAuthenticated && (
-                <Link href="/dashboard">
-                  <a className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                <Link 
+                  href="/dashboard"
+                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                     location === '/dashboard' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  }`}>
-                    Dashboard
-                  </a>
+                  }`}
+                >
+                  Dashboard
                 </Link>
               )}
             </nav>
@@ -90,13 +94,13 @@ const AppBar = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem asChild>
-                    <Link href="/profile">
-                      <a className="w-full">Profilo</a>
+                    <Link href="/profile" className="w-full">
+                      Profilo
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard">
-                      <a className="w-full">Dashboard</a>
+                    <Link href="/dashboard" className="w-full">
+                      Dashboard
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={logout}>
@@ -137,48 +141,54 @@ const AppBar = () => {
       {isMenuOpen && (
         <div className="sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
-            <Link href="/">
-              <a className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+            <Link 
+              href="/"
+              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
                 location === '/' && !isAuthenticated ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-              }`}>
-                Home
-              </a>
+              }`}
+            >
+              Home
             </Link>
-            <Link href="/features">
-              <a className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+            <Link 
+              href="/features"
+              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
                 location === '/features' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-              }`}>
-                Funzionalità
-              </a>
+              }`}
+            >
+              Funzionalità
             </Link>
-            <Link href="/pricing">
-              <a className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+            <Link 
+              href="/pricing"
+              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
                 location === '/pricing' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-              }`}>
-                Prezzi
-              </a>
+              }`}
+            >
+              Prezzi
             </Link>
-            <Link href="/about">
-              <a className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+            <Link 
+              href="/about"
+              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
                 location === '/about' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-              }`}>
-                Chi siamo
-              </a>
+              }`}
+            >
+              Chi siamo
             </Link>
-            <Link href="/contact">
-              <a className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+            <Link 
+              href="/contact"
+              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
                 location === '/contact' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-              }`}>
-                Contatti
-              </a>
+              }`}
+            >
+              Contatti
             </Link>
             {isAuthenticated && (
-              <Link href="/dashboard">
-                <a className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+              <Link 
+                href="/dashboard"
+                className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
                   location === '/dashboard' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-                }`}>
-                  Dashboard
-                </a>
+                }`}
+              >
+                Dashboard
               </Link>
             )}
           </div>
@@ -197,15 +207,17 @@ const AppBar = () => {
                   </div>
                 </div>
                 <div className="mt-3 space-y-1">
-                  <Link href="/profile">
-                    <a className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                      Profilo
-                    </a>
+                  <Link 
+                    href="/profile"
+                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                  >
+                    Profilo
                   </Link>
-                  <Link href="/dashboard">
-                    <a className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                      Dashboard
-                    </a>
+                  <Link 
+                    href="/dashboard"
+                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                  >
+                    Dashboard
                   </Link>
                   <button
                     onClick={logout}
@@ -217,15 +229,17 @@ const AppBar = () => {
               </>
             ) : (
               <div className="mt-3 space-y-1 px-2">
-                <Link href="/login">
-                  <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">
-                    Accedi
-                  </a>
+                <Link 
+                  href="/login"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                >
+                  Accedi
                 </Link>
-                <Link href="/signup">
-                  <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">
-                    Registrati
-                  </a>
+                <Link 
+                  href="/signup"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                >
+                  Registrati
                 </Link>
               </div>
             )}
