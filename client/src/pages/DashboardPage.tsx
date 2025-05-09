@@ -38,6 +38,7 @@ const DashboardPage = () => {
   } = useQuery<Candidate[]>({
     queryKey: [getApiUrl()],
     refetchOnWindowFocus: false,
+    retry: false
   });
   
   // Refetch when filters change

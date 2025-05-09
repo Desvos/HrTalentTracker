@@ -27,11 +27,14 @@ const CandidateTable = ({ candidates }: CandidateTableProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   
+  // Ensure candidates is always an array
+  const validCandidates = Array.isArray(candidates) ? candidates : [];
+  
   // Calculate pagination
-  const totalPages = Math.ceil(candidates.length / itemsPerPage);
+  const totalPages = Math.max(1, Math.ceil(validCandidates.length / itemsPerPage));
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, candidates.length);
-  const currentCandidates = candidates.slice(startIndex, endIndex);
+  const endIndex = Math.min(startIndex + itemsPerPage, validCandidates.length);
+  const currentCandidates = validCandidates.slice(startIndex, endIndex);
   
   // Handle page change
   const handlePageChange = (page: number) => {
@@ -170,76 +173,92 @@ const CandidateTable = ({ candidates }: CandidateTableProps) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentCandidates.map((candidate) => (
-              <TableRow key={candidate.id}>
-                <TableCell>
-                  <div className="flex items-center">
-                    <Avatar className="h-10 w-10 mr-4">
-                      <AvatarFallback>{getInitials(candidate.name)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-medium">{candidate.name}</div>
-                      <div className="text-muted-foreground text-sm">ID: {candidate.id}</div>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <div className="font-medium">{candidate.role}</div>
-                </TableCell>
-                <TableCell>
-                  <div className="font-medium">{candidate.currentLocation.city}, {candidate.currentLocation.country}</div>
-                </TableCell>
-                <TableCell>
-                  {getEducationSummary(candidate)}
-                </TableCell>
-                <TableCell>
-                  <div className="flex flex-wrap gap-1">
-                    {candidate.skills.slice(0, 3).map((skill, index) => (
-                      <span 
-                        key={index}
-                        className={`px-2 py-1 rounded-full text-xs font-semibold ${getSkillBadgeVariant(skill)}`}
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                    {candidate.skills.length > 3 && (
-                      <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">
-                        +{candidate.skills.length - 3}
-                      </span>
-                    )}
-                  </div>
+            {validCandidates.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center py-6 text-muted-foreground">
+                  No candidates found. Please log in to view candidate data or adjust your filter criteria.
                 </TableCell>
               </TableRow>
-            ))}
+            ) : (
+              currentCandidates.map((candidate) => (
+                <TableRow key={candidate.id}>
+                  <TableCell>
+                    <div className="flex items-center">
+                      <Avatar className="h-10 w-10 mr-4">
+                        <AvatarFallback>{getInitials(candidate.name)}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="font-medium">{candidate.name}</div>
+                        <div className="text-muted-foreground text-sm">ID: {candidate.id}</div>
+                      </div>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="font-medium">{candidate.role}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="font-medium">{candidate.currentLocation.city}, {candidate.currentLocation.country}</div>
+                  </TableCell>
+                  <TableCell>
+                    {getEducationSummary(candidate)}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap gap-1">
+                      {candidate.skills.slice(0, 3).map((skill, index) => (
+                        <span 
+                          key={index}
+                          className={`px-2 py-1 rounded-full text-xs font-semibold ${getSkillBadgeVariant(skill)}`}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      {candidate.skills.length > 3 && (
+                        <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">
+                          +{candidate.skills.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </div>
       
       <div className="px-4 py-3 flex items-center justify-between border-t">
         <div className="text-sm text-muted-foreground">
-          Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
-          <span className="font-medium">{endIndex}</span> of{' '}
-          <span className="font-medium">{candidates.length}</span> results
+          {validCandidates.length > 0 ? (
+            <>
+              Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
+              <span className="font-medium">{endIndex}</span> of{' '}
+              <span className="font-medium">{validCandidates.length}</span> results
+            </>
+          ) : (
+            <span>No results found</span>
+          )}
         </div>
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious 
-                onClick={() => handlePageChange(currentPage - 1)}
-                isDisabled={currentPage === 1}
-              />
-            </PaginationItem>
-            
-            {getPaginationItems()}
-            
-            <PaginationItem>
-              <PaginationNext 
-                onClick={() => handlePageChange(currentPage + 1)}
-                isDisabled={currentPage === totalPages}
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        {validCandidates.length > 0 && (
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious 
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  isDisabled={currentPage === 1}
+                />
+              </PaginationItem>
+              
+              {getPaginationItems()}
+              
+              <PaginationItem>
+                <PaginationNext 
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  isDisabled={currentPage === totalPages}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        )}
       </div>
     </div>
   );

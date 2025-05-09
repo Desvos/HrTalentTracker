@@ -196,7 +196,11 @@ export const generateMockCandidates = (count: number): Candidate[] => {
 };
 
 // Utility function to get talent hotspots from candidate data
-export const getTalentHotspots = (candidates: Candidate[]) => {
+export const getTalentHotspots = (candidates: Candidate[] | null) => {
+  if (!candidates || !Array.isArray(candidates)) {
+    return []; // Return empty array if candidates is null or not an array
+  }
+  
   const hotspotMap = new Map<string, { count: number; location: Location }>();
   
   // Count each institution occurrence
