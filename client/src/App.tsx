@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAuth, AuthProvider } from "./contexts/AuthContext";
+import LandingPage from "@/pages/LandingPage";
 import LoginPage from "@/pages/LoginPage";
 import SignupPage from "@/pages/SignupPage";
 import DashboardPage from "@/pages/DashboardPage";
@@ -15,7 +16,7 @@ function AppRoutes() {
 
   return (
     <Switch>
-      <Route path="/" component={isAuthenticated ? DashboardPage : LoginPage} />
+      <Route path="/" component={isAuthenticated ? DashboardPage : LandingPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/dashboard" component={isAuthenticated ? DashboardPage : LoginPage} />
