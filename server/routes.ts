@@ -3,6 +3,8 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertUserSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import path from "path";
+import { fileURLToPath } from "url";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Put application routes here
@@ -13,25 +15,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email, password } = req.body;
 
-      console.log('Login attempt:', { email, password });
+      console.log("Login attempt:", { email, password });
 
       if (!email || !password) {
-        console.log('Missing credentials');
-        return res.status(400).json({ message: "Email and password are required" });
+        console.log("Missing credentials");
+        return res
+          .status(400)
+          .json({ message: "Email and password are required" });
       }
 
       const user = await storage.getUserByEmail(email);
-      console.log('User found:', user ? 'yes' : 'no');
+      console.log("User found:", user ? "yes" : "no");
 
       if (!user) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
       // Verifica la password (in un'app reale, usa bcrypt o simili)
-      console.log('Password check:', {
+      console.log("Password check:", {
         provided: password,
         stored: user.password,
-        match: user.password === password
+        match: user.password === password,
       });
 
       if (user.password !== password) {
@@ -45,11 +49,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Set session cookie
       req.session.userId = user.id;
 
-      console.log('Login successful for user:', userWithoutPassword);
+      console.log("Login successful for user:", userWithoutPassword);
 
       return res.status(200).json({
         message: "Login successful",
-        user: userWithoutPassword
+        user: userWithoutPassword,
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -69,7 +73,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const existingUser = await storage.getUserByEmail(result.data.email);
 
       if (existingUser) {
-        return res.status(409).json({ message: "User with this email already exists" });
+        return res
+          .status(409)
+          .json({ message: "User with this email already exists" });
       }
 
       const newUser = await storage.createUser(result.data);
@@ -79,7 +85,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       return res.status(201).json({
         message: "User created successfully",
-        user: userWithoutPassword
+        user: userWithoutPassword,
       });
     } catch (error) {
       console.error("Signup error:", error);
@@ -97,7 +103,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const candidates = await storage.filterCandidates({
         role,
         skill,
-        institution
+        institution,
       });
 
       return res.status(200).json(candidates);
@@ -135,7 +141,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Get unique roles
       const uniqueRoles: string[] = [];
-      candidates.forEach(c => {
+      candidates.forEach((c) => {
         if (!uniqueRoles.includes(c.role)) {
           uniqueRoles.push(c.role);
         }
@@ -143,8 +149,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Get unique skills
       const uniqueSkills: string[] = [];
-      candidates.forEach(c => {
-        c.skills.forEach(skill => {
+      candidates.forEach((c) => {
+        c.skills.forEach((skill) => {
           if (!uniqueSkills.includes(skill)) {
             uniqueSkills.push(skill);
           }
@@ -153,8 +159,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Get unique institutions
       const uniqueInstitutions: string[] = [];
-      candidates.forEach(c => {
-        c.education.forEach(edu => {
+      candidates.forEach((c) => {
+        c.education.forEach((edu) => {
           if (!uniqueInstitutions.includes(edu.institutionName)) {
             uniqueInstitutions.push(edu.institutionName);
           }
@@ -164,7 +170,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(200).json({
         roles: uniqueRoles,
         skills: uniqueSkills,
-        institutions: uniqueInstitutions
+        institutions: uniqueInstitutions,
       });
     } catch (error) {
       console.error("Get filters data error:", error);
@@ -182,28 +188,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      "contents": [
+      contents: [
         {
-          "parts": [
+          parts: [
             {
-              "text": "Genera dati sintetici ma plausibili sulla distribuzione geografica in Italia di una figura professionale specifica.\nDato in input un titolo professionale (es. \"Software Developer\", \"Infermiere\", \"Architetto\"), restituisci un array JSON di oggetti, ciascuno dei quali rappresenta una località italiana (il più possibile precisa e coerente con il contesto professionale).\nOgni oggetto deve avere due campi:\n\"place\": il nome della località (in minuscolo, senza accenti, es. \"napoli\"),\n\"distribution\": un numero decimale maggiore di 0 e minore o uguale a 1, che rappresenta la quota (in proporzione) di professionisti presenti in quella località. La somma dei valori \"distribution\" dell'intero array deve essere esattamente 1.\nIl numero di località può variare, assicurati tuttavia che ci sia un numero ragionevole di risultati, almeno 10, ma deve riflettere la realisticità della distribuzione della professione (es. per \"Ricercatore universitario\", concentrarsi su città universitarie, ecc.).Assicurati che la città sia esistente (non usare raggruppamenti come \"altre citta\" ma usa solo nomi di città italiane). Assicurati che le città siano ripetute una sola volta, ovvero i risultati devono essere univoci per place.\nRestituisci solo l'array JSON, senza ulteriori spiegazioni o testo."
+              text: 'Genera dati sintetici ma plausibili sulla distribuzione geografica in Italia di una figura professionale specifica.\nDato in input un titolo professionale (es. "Software Developer", "Infermiere", "Architetto"), restituisci un array JSON di oggetti, ciascuno dei quali rappresenta una località italiana (il più possibile precisa e coerente con il contesto professionale).\nOgni oggetto deve avere due campi:\n"place": il nome della località (in minuscolo, senza accenti, es. "napoli"),\n"distribution": un numero decimale maggiore di 0 e minore o uguale a 1, che rappresenta la quota (in proporzione) di professionisti presenti in quella località. La somma dei valori "distribution" dell\'intero array deve essere esattamente 1.\nIl numero di località può variare, assicurati tuttavia che ci sia un numero ragionevole di risultati, almeno 10, ma deve riflettere la realisticità della distribuzione della professione (es. per "Ricercatore universitario", concentrarsi su città universitarie, ecc.).Assicurati che la città sia esistente (non usare raggruppamenti come "altre citta" ma usa solo nomi di città italiane). Assicurati che le città siano ripetute una sola volta, ovvero i risultati devono essere univoci per place.\nRestituisci solo l\'array JSON, senza ulteriori spiegazioni o testo.',
             },
             {
-              "text": profession
-            }
-          ]
-        }
-      ]
+              text: profession,
+            },
+          ],
+        },
+      ],
     });
 
     var requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: 'follow'
+      redirect: "follow",
     };
 
-    const req = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAlVWUWu0jBTqjqaV9ofC9MD2wndggW_go", requestOptions as any);
+    const req = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAlVWUWu0jBTqjqaV9ofC9MD2wndggW_go",
+      requestOptions as any
+    );
 
     const res = await req.json();
     const data = res.candidates[0].content.parts[0].text;
@@ -222,7 +231,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     if (placeToCoordinates[place]) {
       return placeToCoordinates[place];
     }
-    const res = await fetch(`https://nominatim.openstreetmap.org/search.php?q=${encodeURIComponent(place)}&format=jsonv2`);
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search.php?q=${encodeURIComponent(
+        place
+      )}&format=jsonv2`
+    );
     const data = await res.json();
     if (data.length === 0) {
       throw new Error(`No coordinates found for place: ${place}`);
@@ -233,14 +246,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }
 
   // Enable CORS for localhost:5173
-  app.get('/api/distribution', async (req, res) => {
+  app.get("/api/distribution", async (req, res) => {
     try {
       const { profession } = req.query;
       if (!profession) {
-        return res.status(400).json({ error: 'Profession is required' });
+        return res.status(400).json({ error: "Profession is required" });
       }
 
-      const distribution = await getDistributionByProfession(profession as string);
+      const distribution = await getDistributionByProfession(
+        profession as string
+      );
       for (const place of distribution) {
         const coordinates = await getCoordinatesByPlace(place.place);
         place.coordinates = coordinates;
@@ -252,8 +267,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/resume/:name', (req, res) => {
-    res.sendFile(__dirname + '/resume_sample.pdf');
+  app.get("/resume/:name", (req, res) => {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${req.params.name}"`
+    );
+    res.sendFile(path.join(__dirname, "resume_sample.pdf"));
   });
 
   const httpServer = createServer(app);
