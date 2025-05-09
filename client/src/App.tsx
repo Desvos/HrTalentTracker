@@ -9,6 +9,9 @@ import LoginPage from "@/pages/LoginPage";
 import SignupPage from "@/pages/SignupPage";
 import DashboardPage from "@/pages/DashboardPage";
 import PricingPage from "@/pages/PricingPage";
+import AboutPage from "@/pages/AboutPage";
+import FeaturesPage from "@/pages/FeaturesPage";
+import ContactPage from "@/pages/ContactPage";
 import NotFound from "@/pages/not-found";
 
 function AppRoutes() {
@@ -21,6 +24,9 @@ function AppRoutes() {
       <Route path="/signup" component={SignupPage} />
       <Route path="/dashboard" component={isAuthenticated ? DashboardPage : LoginPage} />
       <Route path="/pricing" component={PricingPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/features" component={FeaturesPage} />
+      <Route path="/contact" component={ContactPage} />
       <Route component={NotFound} />
     </Switch>
   );
