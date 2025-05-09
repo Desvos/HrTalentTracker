@@ -1,0 +1,81 @@
+Please generate a React.js application with the following specifications:
+
+**Project Title:** HR Talent Mapper
+
+**Core Functionality:**
+The application is an HR tool designed to visualize the geographical distribution of company resources (employees/candidates) and identify key talent hotspots (e.g., universities, campuses) based on candidate data.
+
+**Tech Stack:**
+* **Frontend:** React.js
+* **UI Library:** Ant Design (for components, layout, and styling)
+* **Mapping Library:** Leaflet (for interactive maps)
+
+**Data Requirements:**
+1.  **Candidate Data:**
+    * Generate mock data for at least 500 candidates.
+    * Each candidate should have at least the following fields:
+        * `id` (unique identifier)
+        * `name` (string)
+        * `currentLocation`: { `latitude`: number, `longitude`: number, `city`: string, `country`: string }
+        * `education`: [ { `institutionName`: string, `degree`: string, `graduationYear`: number, `location`: { `latitude`: number, `longitude`: number, `city`: string, `country`: string } } ] (Allow for multiple educational entries per candidate)
+        * `skills`: [string] (e.g., ["JavaScript", "React", "Project Management"])
+        * `role`: string (e.g., "Software Engineer", "Data Analyst", "HR Specialist")
+    * Ensure a diverse geographical distribution for both `currentLocation` and `education.location`.
+2.  **Talent Hotspot Data:**
+    * This data should be derived dynamically from the `education` field of the candidate data.
+    * Identify institutions (universities, campuses) that appear frequently in the candidate education history.
+    * The map should visually represent these hotspots, possibly with markers indicating the concentration of talent from those institutions.
+
+**Application Pages & UI/UX:**
+
+1.  **Login Page:**
+    * Clean and simple login form with fields for "Email" and "Password".
+    * Include a "Login" button and a link for "Forgot Password?" (no backend functionality needed for these, just the UI).
+    * Consider UX best practices for form validation (e.g., email format, password presence).
+    * Upon successful mock login (e.g., any non-empty email/password), redirect to the Home Page.
+
+2.  **Home Page (Dashboard):**
+    * This page will be the main interface after login.
+    * **Main Feature: Interactive Map (Leaflet):**
+        * Display markers for all candidates based on their `currentLocation`. Clicking a marker should show a popup/tooltip with basic candidate info (Name, Role, City).
+        * Display markers for talent hotspots (derived from `education.location`). Clicking a hotspot marker should show the institution name and perhaps the number of candidates from that institution.
+        * Implement basic map controls (zoom in/out, pan).
+        * Consider using different marker icons or colors to differentiate between individual resources and talent hotspots.
+    * **Data Display/Filters (Ant Design):**
+        * Include a section (e.g., a sidebar or a section above/below the map) to display a summary or a filterable list of candidates.
+        * Allow filtering candidates by skills, role, or education institution.
+        * Use Ant Design components like `Table`, `Select`, `Input` for filtering and data display.
+    * **Layout:** Use Ant Design's `Layout` components (Sider, Header, Content, Footer) for a professional structure.
+    * The overall design should be intuitive and visually appealing, focusing on clarity and ease of use.
+
+3.  **Pricing Page:**
+    * Display 2-3 fictional pricing tiers (e.g., Basic, Pro, Enterprise).
+    * Each tier should list a few bullet points of features.
+    * Each tier should have a "Sign Up" or "Get Started" button.
+    * Clicking any "Sign Up" button should redirect the user to a Signup Page.
+
+4.  **Signup Page:**
+    * A simple registration form with fields like "Full Name", "Company Name", "Email", "Password", "Confirm Password".
+    * Include a "Create Account" button.
+    * No backend functionality is required for the signup process, just the UI.
+    * Consider UX best practices for form validation.
+
+**General UX/UI Best Practices:**
+* **Responsive Design:** Ensure the application is usable on different screen sizes (desktop focus primarily, but consider basic responsiveness).
+* **Clear Navigation:** Easy-to-understand navigation between pages (e.g., using Ant Design's `Menu` component in the Header or Sider).
+* **Consistent Styling:** Maintain a consistent look and feel throughout the application using Ant Design's theming capabilities or custom styles where necessary.
+* **Feedback:** Provide visual feedback for actions (e.g., button clicks, loading states if any mock delays are implemented).
+* **Accessibility:** Keep basic accessibility principles in mind (e.g., proper HTML semantics, keyboard navigation if feasible within the scope).
+
+**Code Structure:**
+* Organize components logically (e.g., `components/`, `pages/`, `services/` for data mocking).
+* Use functional components with Hooks.
+
+**Deliverables:**
+* A functional React.js application hosted on Replit.
+* Source code that adheres to the requirements above.
+
+**Example Scenario for Home Page Map:**
+An HR manager logs in. They see a map of the world (or a specific region). Red pins indicate individual employees/candidates. Blue larger circles indicate universities from which many candidates have graduated. Clicking a red pin shows "John Doe - Software Engineer - London". Clicking a blue circle shows "XYZ University - 15 Candidates". They can filter candidates by "React" skill, and the map updates to show only relevant candidates.
+
+Please begin by setting up the project with Create React App (or Vite), and then integrate Ant Design and Leaflet. Proceed to build the pages and components as described.
