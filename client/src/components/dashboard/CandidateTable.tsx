@@ -226,7 +226,7 @@ const CandidateTable = ({ candidates }: CandidateTableProps) => {
             <PaginationItem>
               <PaginationPrevious 
                 onClick={() => handlePageChange(currentPage - 1)}
-                isDisabled={currentPage === 1}
+                className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
               />
             </PaginationItem>
             
@@ -235,7 +235,7 @@ const CandidateTable = ({ candidates }: CandidateTableProps) => {
             <PaginationItem>
               <PaginationNext 
                 onClick={() => handlePageChange(currentPage + 1)}
-                isDisabled={currentPage === totalPages}
+                className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
               />
             </PaginationItem>
           </PaginationContent>
