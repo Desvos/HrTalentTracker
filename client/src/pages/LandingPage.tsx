@@ -8,8 +8,8 @@ const LandingPage = () => {
 
   return (
     <PublicLayout
-      title="HR Talent Mapper - Visualizza e analizza la distribuzione del talento"
-      description="HR Talent Mapper è uno strumento per visualizzare geograficamente la distribuzione di candidati e analizzare le fonti di talento per il tuo team."
+      title="HR Talent Mapper - Visualize and analyze talent distribution"
+      description="HR Talent Mapper is a tool for geographically visualizing candidate distribution and analyzing talent sources for your team."
     >
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-16 px-6">
@@ -17,24 +17,24 @@ const LandingPage = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Trova e analizza i migliori talenti con la mappatura geografica
+                Find and analyze top talent with geographic mapping
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                Visualizza la distribuzione geografica dei candidati e scopri le principali fonti di talento con una mappa interattiva avanzata.
+                Visualize the geographic distribution of candidates and discover key talent sources with our advanced interactive map.
               </p>
               <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
                 <Button 
                   size="lg"
                   onClick={() => navigate('/signup')}
                 >
-                  Inizia subito
+                  Get Started
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
                   onClick={() => navigate('/login')}
                 >
-                  Accedi
+                  Login
                 </Button>
               </div>
             </div>
@@ -56,33 +56,33 @@ const LandingPage = () => {
       {/* Features Section */}
       <section className="py-16 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Funzionalità chiave</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-background rounded-lg p-6 shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Map className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Visualizzazione geografica</h3>
+              <h3 className="text-xl font-bold mb-2">Geographic Visualization</h3>
               <p className="text-muted-foreground">
-                Mappa interattiva per visualizzare la distribuzione geografica dei candidati in tempo reale.
+                Interactive map to visualize the geographic distribution of candidates in real time.
               </p>
             </div>
             <div className="bg-background rounded-lg p-6 shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Users className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Analisi delle fonti di talento</h3>
+              <h3 className="text-xl font-bold mb-2">Talent Source Analysis</h3>
               <p className="text-muted-foreground">
-                Identifica automaticamente le istituzioni e le aree geografiche che producono i migliori talenti.
+                Automatically identify institutions and geographic areas that produce the best talent.
               </p>
             </div>
             <div className="bg-background rounded-lg p-6 shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <BarChart className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Analisi avanzate</h3>
+              <h3 className="text-xl font-bold mb-2">Advanced Analytics</h3>
               <p className="text-muted-foreground">
-                Filtra e confronta i dati dei candidati in base a competenze, ruoli e formazione accademica.
+                Filter and compare candidate data based on skills, roles, and academic background.
               </p>
             </div>
           </div>

@@ -36,20 +36,20 @@ const PublicLayout = ({
                 <span className="ml-2 text-xl font-bold">HR Talent Mapper</span>
               </div>
               <p className="mt-4 text-sm text-gray-500">
-                La soluzione per visualizzare e analizzare la distribuzione geografica dei talenti.
+                The solution for visualizing and analyzing the geographic distribution of talent.
               </p>
             </div>
             <div className="col-span-1">
-              <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Prodotto</h3>
+              <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Product</h3>
               <ul className="mt-4 space-y-4">
                 <li>
                   <a href="/features" className="text-base text-gray-500 hover:text-gray-900">
-                    Funzionalità
+                    Features
                   </a>
                 </li>
                 <li>
                   <a href="/pricing" className="text-base text-gray-500 hover:text-gray-900">
-                    Prezzi
+                    Pricing
                   </a>
                 </li>
                 <li>
@@ -60,11 +60,11 @@ const PublicLayout = ({
               </ul>
             </div>
             <div className="col-span-1">
-              <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Azienda</h3>
+              <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Company</h3>
               <ul className="mt-4 space-y-4">
                 <li>
                   <a href="/about" className="text-base text-gray-500 hover:text-gray-900">
-                    Chi siamo
+                    About Us
                   </a>
                 </li>
                 <li>
@@ -74,22 +74,22 @@ const PublicLayout = ({
                 </li>
                 <li>
                   <a href="/careers" className="text-base text-gray-500 hover:text-gray-900">
-                    Lavora con noi
+                    Careers
                   </a>
                 </li>
               </ul>
             </div>
             <div className="col-span-1">
-              <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Supporto</h3>
+              <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Support</h3>
               <ul className="mt-4 space-y-4">
                 <li>
                   <a href="/contact" className="text-base text-gray-500 hover:text-gray-900">
-                    Contatti
+                    Contact
                   </a>
                 </li>
                 <li>
                   <a href="/help" className="text-base text-gray-500 hover:text-gray-900">
-                    Guida
+                    Help
                   </a>
                 </li>
                 <li>
@@ -99,7 +99,7 @@ const PublicLayout = ({
                 </li>
                 <li>
                   <a href="/terms" className="text-base text-gray-500 hover:text-gray-900">
-                    Termini
+                    Terms
                   </a>
                 </li>
               </ul>
@@ -108,7 +108,7 @@ const PublicLayout = ({
           <div className="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
             <div className="mt-8 md:mt-0 md:order-1">
               <p className="text-center text-base text-gray-400">
-                &copy; {new Date().getFullYear()} HR Talent Mapper. Tutti i diritti riservati.
+                &copy; {new Date().getFullYear()} HR Talent Mapper. All rights reserved.
               </p>
             </div>
           </div>

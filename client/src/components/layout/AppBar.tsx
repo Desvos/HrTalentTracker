@@ -45,7 +45,7 @@ const AppBar = () => {
                   location === '/features' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                 }`}
               >
-                Funzionalità
+                Features
               </Link>
               <Link 
                 href="/pricing"
@@ -53,7 +53,7 @@ const AppBar = () => {
                   location === '/pricing' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                 }`}
               >
-                Prezzi
+                Pricing
               </Link>
               <Link 
                 href="/about"
@@ -61,7 +61,7 @@ const AppBar = () => {
                   location === '/about' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                 }`}
               >
-                Chi siamo
+                About Us
               </Link>
               <Link 
                 href="/contact"
@@ -69,7 +69,7 @@ const AppBar = () => {
                   location === '/contact' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                 }`}
               >
-                Contatti
+                Contact
               </Link>
               {isAuthenticated && (
                 <Link 
@@ -95,7 +95,7 @@ const AppBar = () => {
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem asChild>
                     <Link href="/profile" className="w-full">
-                      Profilo
+                      Profile
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
@@ -111,10 +111,10 @@ const AppBar = () => {
             ) : (
               <div className="flex space-x-4">
                 <Button variant="ghost" asChild>
-                  <Link href="/login">Accedi</Link>
+                  <Link href="/login">Login</Link>
                 </Button>
                 <Button asChild>
-                  <Link href="/signup">Registrati</Link>
+                  <Link href="/signup">Sign Up</Link>
                 </Button>
               </div>
             )}
@@ -155,7 +155,7 @@ const AppBar = () => {
                 location === '/features' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
               }`}
             >
-              Funzionalità
+              Features
             </Link>
             <Link 
               href="/pricing"
@@ -163,7 +163,7 @@ const AppBar = () => {
                 location === '/pricing' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
               }`}
             >
-              Prezzi
+              Pricing
             </Link>
             <Link 
               href="/about"
@@ -171,7 +171,7 @@ const AppBar = () => {
                 location === '/about' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
               }`}
             >
-              Chi siamo
+              About Us
             </Link>
             <Link 
               href="/contact"
@@ -179,7 +179,7 @@ const AppBar = () => {
                 location === '/contact' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
               }`}
             >
-              Contatti
+              Contact
             </Link>
             {isAuthenticated && (
               <Link 
@@ -211,7 +211,7 @@ const AppBar = () => {
                     href="/profile"
                     className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                   >
-                    Profilo
+                    Profile
                   </Link>
                   <Link 
                     href="/dashboard"
@@ -233,13 +233,13 @@ const AppBar = () => {
                   href="/login"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 >
-                  Accedi
+                  Login
                 </Link>
                 <Link 
                   href="/signup"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 >
-                  Registrati
+                  Sign Up
                 </Link>
               </div>
             )}
