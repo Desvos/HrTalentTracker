@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { apiRequest } from '@/lib/queryClient';
 import { toast } from 'sonner';
+import PublicLayout from '@/components/layout/PublicLayout';
 
 const PublicCVUploader = () => {
   const [isUploading, setIsUploading] = useState(false);
@@ -76,101 +77,111 @@ const PublicCVUploader = () => {
 
   if (isSuccess) {
     return (
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardContent className="pt-6 text-center space-y-4">
-          <h2 className="text-2xl font-semibold text-green-600">Thank you for uploading your CV!</h2>
-          <p>
-            We have received your CV and will review it shortly.
-            We will contact you if your profile matches our requirements.
-          </p>
-          <button
-            onClick={() => setIsSuccess(false)}
-            className="text-primary hover:underline"
-          >
-            Upload another CV
-          </button>
-        </CardContent>
-      </Card>
+      <PublicLayout
+        title="Upload CV - HR Talent Mapper"
+        description="Upload your CV to join our talent database"
+      >
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardContent className="pt-6 text-center space-y-4">
+            <h2 className="text-2xl font-semibold text-green-600">Thank you for uploading your CV!</h2>
+            <p>
+              We have received your CV and will review it shortly.
+              We will contact you if your profile matches our requirements.
+            </p>
+            <button
+              onClick={() => setIsSuccess(false)}
+              className="text-primary hover:underline"
+            >
+              Upload another CV
+            </button>
+          </CardContent>
+        </Card>
+      </PublicLayout>
     );
   }
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <div className="text-center space-y-4">
-          <h1 className="text-3xl font-bold">Upload your CV</h1>
-          <p className="text-muted-foreground">
-            Fill out the form below to upload your CV. Our recruiters will review it as soon as possible.
-          </p>
-        </div>
+    <PublicLayout
+      title="Upload CV - HR Talent Mapper"
+      description="Upload your CV to join our talent database"
+    >
+      <div className="container mx-auto py-8">
+        <div className="max-w-2xl mx-auto space-y-8">
+          <div className="text-center space-y-4">
+            <h1 className="text-3xl font-bold">Upload your CV</h1>
+            <p className="text-muted-foreground">
+              Fill out the form below to upload your CV. Our recruiters will review it as soon as possible.
+            </p>
+          </div>
 
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Upload your CV</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="firstName">First Name</Label>
-                <Input
-                  id="firstName"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  disabled={isUploading}
-                  placeholder="Enter your first name"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="lastName">Last Name</Label>
-                <Input
-                  id="lastName"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  disabled={isUploading}
-                  placeholder="Enter your last name"
-                />
-              </div>
-            </div>
-
-            <div
-              {...getRootProps()}
-              className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
-                ${isDragActive ? 'border-primary bg-primary/10' : 'border-muted-foreground/25'}
-                ${isUploading ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary'}`}
-            >
-              <input {...getInputProps()} />
-              {isUploading ? (
-                <div className="space-y-4">
-                  <p>Uploading...</p>
-                  <Progress value={uploadProgress} className="w-full" />
-                </div>
-              ) : isDragActive ? (
-                <p>Drop the file here...</p>
-              ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle>Upload your CV</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <p>Drag and drop your CV here, or click to select</p>
-                  <p className="text-sm text-muted-foreground">
-                    Supports PDF and image files (PNG, JPG)
-                  </p>
+                  <Label htmlFor="firstName">First Name</Label>
+                  <Input
+                    id="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    disabled={isUploading}
+                    placeholder="Enter your first name"
+                  />
                 </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+                <div className="space-y-2">
+                  <Label htmlFor="lastName">Last Name</Label>
+                  <Input
+                    id="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    disabled={isUploading}
+                    placeholder="Enter your last name"
+                  />
+                </div>
+              </div>
 
-        <Card>
-          <CardContent className="pt-6">
-            <h2 className="text-xl font-semibold mb-4">Why upload your CV?</h2>
-            <ul className="space-y-2 text-muted-foreground">
-              <li>• Join our talent database</li>
-              <li>• Be considered for future opportunities</li>
-              <li>• Simplified selection process</li>
-              <li>• Updates on new positions</li>
-            </ul>
-          </CardContent>
-        </Card>
+              <div
+                {...getRootProps()}
+                className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
+                  ${isDragActive ? 'border-primary bg-primary/10' : 'border-muted-foreground/25'}
+                  ${isUploading ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary'}`}
+              >
+                <input {...getInputProps()} />
+                {isUploading ? (
+                  <div className="space-y-4">
+                    <p>Uploading...</p>
+                    <Progress value={uploadProgress} className="w-full" />
+                  </div>
+                ) : isDragActive ? (
+                  <p>Drop the file here...</p>
+                ) : (
+                  <div className="space-y-2">
+                    <p>Drag and drop your CV here, or click to select</p>
+                    <p className="text-sm text-muted-foreground">
+                      Supports PDF and image files (PNG, JPG)
+                    </p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <h2 className="text-xl font-semibold mb-4">Why upload your CV?</h2>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• Join our talent database</li>
+                <li>• Be considered for future opportunities</li>
+                <li>• Simplified selection process</li>
+                <li>• Updates on new positions</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </PublicLayout>
   );
 };
 

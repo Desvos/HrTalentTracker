@@ -9,17 +9,17 @@ const AboutPage = () => {
 
   return (
     <PublicLayout
-      title="Chi siamo - HR Talent Mapper"
-      description="Scopri la nostra missione: aiutare le aziende a trovare e visualizzare i migliori talenti in tutto il mondo."
+      title="About Us - HR Talent Mapper"
+      description="Discover our mission: helping companies find and visualize the best talent worldwide."
     >
       {/* Hero Section */}
       <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-white">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-            La nostra missione
+            Our Mission
           </h1>
           <p className="mt-6 text-xl text-gray-500">
-            Vogliamo rivoluzionare il modo in cui le aziende scoprono e analizzano i talenti attraverso la visualizzazione geografica e l'analisi avanzata.
+            We want to revolutionize how companies discover and analyze talent through geographic visualization and advanced analytics.
           </p>
         </div>
       </div>
@@ -29,19 +29,19 @@ const AboutPage = () => {
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">La nostra storia</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  HR Talent Mapper è nata nel 2022 da un'idea semplice ma potente: le aziende dovrebbero poter vedere a colpo d'occhio dove si trovano i talenti nel mondo.
+                  HR Talent Mapper was born in 2022 from a simple but powerful idea: companies should be able to see at a glance where talent is located around the world.
                 </p>
                 <p>
-                  I nostri fondatori, con esperienza decennale nei settori HR e tecnologico, hanno riconosciuto che le aziende spendevano troppo tempo cercando di capire dove concentrare i loro sforzi di recruiting.
+                  Our founders, with decades of experience in HR and technology sectors, recognized that companies were spending too much time trying to figure out where to focus their recruiting efforts.
                 </p>
                 <p>
-                  Abbiamo costruito la nostra piattaforma da zero, concentrandoci sulla facilità d'uso e sulla potenza analitica, per offrire ai professionisti HR una soluzione che trasforma i dati grezzi in insight strategici.
+                  We built our platform from scratch, focusing on ease of use and analytical power, to provide HR professionals with a solution that transforms raw data into strategic insights.
                 </p>
                 <p>
-                  Oggi, serviamo centinaia di aziende in tutto il mondo, aiutandole a scoprire talenti in modi che prima non erano possibili.
+                  Today, we serve hundreds of companies worldwide, helping them discover talent in ways that weren't possible before.
                 </p>
               </div>
             </div>
@@ -57,7 +57,7 @@ const AboutPage = () => {
       {/* Values Section */}
       <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our values</h2>
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our Values</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
@@ -93,23 +93,23 @@ const AboutPage = () => {
       {/* Team Section */}
       <div className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Il nostro team</h2>
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our Team</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 name: 'Marco Rossi',
-                role: 'CEO & Co-fondatore',
-                bio: 'Ex-Director of Talent Acquisition in aziende Fortune 500, Marco ha una passione per l\'innovazione nel settore HR.'
+                role: 'CEO & Co-founder',
+                bio: 'Former Director of Talent Acquisition at Fortune 500 companies, Marco has a passion for innovation in the HR sector.'
               },
               {
                 name: 'Laura Bianchi',
-                role: 'CTO & Co-fondatrice',
-                bio: 'Con un background in visualizzazione dati e machine learning, Laura guida lo sviluppo della nostra piattaforma tecnologica.'
+                role: 'CTO & Co-founder',
+                bio: 'With a background in data visualization and machine learning, Laura leads the development of our technological platform.'
               },
               {
                 name: 'Giovanni Verdi',
                 role: 'Head of Customer Success',
-                bio: 'Giovanni si assicura che ogni cliente ottenga il massimo valore dalla nostra piattaforma, con oltre 10 anni di esperienza in ruoli di consulenza.'
+                bio: 'Giovanni ensures that every customer gets maximum value from our platform, with over 10 years of experience in consulting roles.'
               }
             ].map((person, index) => (
               <div key={index} className="bg-gray-50 rounded-lg p-8">
@@ -128,27 +128,27 @@ const AboutPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="py-16 px-4 sm:px-6 lg:px-8 bg-primary/5">
+      <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">
-            Unisciti a noi nella nostra missione
+            Join us in our mission
           </h2>
           <p className="mt-4 text-lg text-gray-500">
-            Scopri come HR Talent Mapper può trasformare il tuo processo di talent acquisition.
+            Discover how HR Talent Mapper can transform your talent acquisition process.
           </p>
           <div className="mt-8 flex justify-center space-x-4">
             <Button
               size="lg"
               onClick={() => navigate('/signup')}
             >
-              Inizia ora
+              Get Started
             </Button>
             <Button
               variant="outline"
               size="lg"
               onClick={() => navigate('/contact')}
             >
-              Contattaci
+              Contact Us
             </Button>
           </div>
         </div>

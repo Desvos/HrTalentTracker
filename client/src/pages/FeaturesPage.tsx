@@ -18,17 +18,17 @@ const FeaturesPage = () => {
 
   return (
     <PublicLayout
-      title="Funzionalità - HR Talent Mapper"
-      description="Scopri tutte le funzionalità di HR Talent Mapper: dalla visualizzazione geografica all'analisi delle fonti di talento."
+      title="Features - HR Talent Mapper"
+      description="Discover all HR Talent Mapper features: from geographic visualization to talent source analysis."
     >
       {/* Hero Section */}
       <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-white">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-            Scopri le potenti funzionalità di HR Talent Mapper
+            Discover the powerful features of HR Talent Mapper
           </h1>
           <p className="mt-6 text-xl text-gray-500">
-            La nostra piattaforma offre strumenti avanzati di visualizzazione e analisi per aiutarti a prendere decisioni informate sul recruiting.
+            Our platform offers advanced visualization and analysis tools to help you make informed recruiting decisions.
           </p>
         </div>
       </div>
@@ -41,18 +41,18 @@ const FeaturesPage = () => {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
                 <div className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-4">
-                  Visualizzazione
+                  Visualization
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Mappa geografica interattiva</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Interactive geographic map</h2>
                 <p className="text-gray-600 mb-6">
-                  Visualizza la distribuzione geografica dei candidati in tempo reale. La nostra mappa interattiva ti permette di:
+                  View the geographic distribution of candidates in real-time. Our interactive map allows you to:
                 </p>
                 <ul className="space-y-3">
                   {[
-                    'Visualizzare la concentrazione di talenti per aree geografiche',
-                    'Identificare "hotspot" di talento a colpo d\'occhio',
-                    'Filtrare per competenze, ruoli e formazione',
-                    'Eseguire zoom e panoramiche per analisi dettagliate'
+                    'View talent concentration by geographic areas',
+                    'Identify talent "hotspots" at a glance',
+                    'Filter by skills, roles, and education',
+                    'Zoom and pan for detailed analysis'
                   ].map((item, index) => (
                     <li key={index} className="flex items-start">
                       <span className="text-primary mr-2">•</span>
@@ -77,18 +77,18 @@ const FeaturesPage = () => {
               </div>
               <div>
                 <div className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-4">
-                  Analisi
+                  Analytics
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Dashboard analitici avanzati</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Advanced analytics dashboards</h2>
                 <p className="text-gray-600 mb-6">
-                  Ottieni insight potenti con i nostri dashboard analitici che ti permettono di:
+                  Get powerful insights with our analytics dashboards that allow you to:
                 </p>
                 <ul className="space-y-3">
                   {[
-                    'Analizzare la distribuzione di competenze per ruolo e regione',
-                    'Identificare le istituzioni che formano i candidati con competenze specifiche',
-                    'Confrontare diverse aree geografiche per densità di talento',
-                    'Monitorare trend e variazioni nel tempo'
+                    'Analyze skill distribution by role and region',
+                    'Identify institutions that train candidates with specific skills',
+                    'Compare different geographic areas for talent density',
+                    'Monitor trends and variations over time'
                   ].map((item, index) => (
                     <li key={index} className="flex items-start">
                       <span className="text-primary mr-2">•</span>
@@ -103,18 +103,18 @@ const FeaturesPage = () => {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
                 <div className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-4">
-                  Filtri
+                  Filters
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Filtri di ricerca potenti</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Powerful search filters</h2>
                 <p className="text-gray-600 mb-6">
-                  Trova esattamente ciò che stai cercando con i nostri filtri avanzati:
+                  Find exactly what you're looking for with our advanced filters:
                 </p>
                 <ul className="space-y-3">
                   {[
-                    'Filtra per ruolo, competenza specifica, o combinazioni di skill',
-                    'Cerca per istituzione formativa o background accademico',
-                    'Filtra per area geografica e disponibilità al trasferimento',
-                    'Combina filtri per ricerche altamente specifiche'
+                    'Filter by role, specific skill, or skill combinations',
+                    'Search by educational institution or academic background',
+                    'Filter by geographic area and relocation availability',
+                    'Combine filters for highly specific searches'
                   ].map((item, index) => (
                     <li key={index} className="flex items-start">
                       <span className="text-primary mr-2">•</span>
@@ -202,13 +202,13 @@ const FeaturesPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="py-16 px-4 sm:px-6 lg:px-8 bg-primary/5">
+      <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">
-            Pronto a trasformare il tuo processo di talent acquisition?
+            Ready to transform your talent acquisition process?
           </h2>
           <p className="mt-4 text-lg text-gray-500">
-            Scopri come HR Talent Mapper può aiutarti a trovare i migliori talenti in tutto il mondo.
+            Discover how HR Talent Mapper can help you find the best talent worldwide.
           </p>
           <div className="mt-8">
             <Button
@@ -216,7 +216,7 @@ const FeaturesPage = () => {
               onClick={() => navigate('/signup')}
               className="group"
             >
-              Inizia ora
+              Get Started
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
