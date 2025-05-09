@@ -136,38 +136,38 @@ const FeaturesPage = () => {
       {/* Additional Features Grid */}
       <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Altre funzionalità</h2>
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Other features</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: <FileText className="h-6 w-6" />,
-                title: 'Esportazione dati',
-                description: 'Esporta facilmente i tuoi dati in diversi formati (CSV, Excel) per ulteriori analisi o reporting.'
+                title: 'Data export',
+                description: 'Easily export your data in different formats (CSV, Excel) for further analysis or reporting.'
               },
               {
                 icon: <Layers className="h-6 w-6" />,
-                title: 'Analisi delle fonti di talento',
-                description: 'Identifica le istituzioni e le aree geografiche che producono candidati con le competenze che cerchi.'
+                title: 'Talent source analysis',
+                description: 'Identify institutions and geographic areas that produce candidates with the skills you\'re looking for.'
               },
               {
                 icon: <Zap className="h-6 w-6" />,
-                title: 'Integrazione API',
-                description: 'Integra HR Talent Mapper con i tuoi strumenti HR esistenti tramite le nostre API RESTful.'
+                title: 'API integration',
+                description: 'Integrate HR Talent Mapper with your existing HR tools through our RESTful APIs.'
               },
               {
                 icon: <Users className="h-6 w-6" />,
-                title: 'Gestione team',
-                description: 'Collabora con il tuo team assegnando ruoli e permessi per un accesso controllato alla piattaforma.'
+                title: 'Team management',
+                description: 'Collaborate with your team by assigning roles and permissions for controlled platform access.'
               },
               {
                 icon: <Lock className="h-6 w-6" />,
-                title: 'Sicurezza avanzata',
-                description: 'I tuoi dati sono protetti con crittografia avanzata e misure di sicurezza conformi agli standard del settore.'
+                title: 'Advanced security',
+                description: 'Your data is protected with advanced encryption and industry-standard security measures.'
               },
               {
                 icon: <BarChart2 className="h-6 w-6" />,
-                title: 'Report personalizzati',
-                description: 'Crea report personalizzati e schedulati per condividere insight chiave con gli stakeholder.'
+                title: 'Custom reports',
+                description: 'Create custom and scheduled reports to share key insights with stakeholders.'
               }
             ].map((feature, index) => (
               <div key={index} className="bg-white rounded-lg p-8 shadow-sm">
@@ -186,10 +186,10 @@ const FeaturesPage = () => {
       <div className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Si integra con i tuoi strumenti preferiti
+            Integrates with your favorite tools
           </h2>
           <p className="text-xl text-gray-500 mb-12 max-w-3xl mx-auto">
-            HR Talent Mapper si integra perfettamente con i principali ATS e strumenti HR sul mercato.
+            HR Talent Mapper seamlessly integrates with the leading ATS and HR tools on the market.
           </p>
           <div className="flex flex-wrap justify-center gap-8">
             {['Workday', 'SAP SuccessFactors', 'Oracle HCM', 'Greenhouse', 'Lever', 'Taleo', 'BambooHR', 'Recruitee'].map((tool, index) => (

@@ -26,8 +26,8 @@ const ContactPage = () => {
       setIsSubmitting(false);
       setSubmitted(true);
       toast({
-        title: "Messaggio inviato",
-        description: "Ti risponderemo al più presto!",
+        title: "Message sent",
+        description: "We'll get back to you soon!",
       });
     }, 1500);
   };
@@ -120,29 +120,29 @@ const ContactPage = () => {
                   <div className="bg-green-100 text-green-800 rounded-full p-3 mb-4">
                     <Check className="h-8 w-8" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Grazie per averci contattato!</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank you for contacting us!</h3>
                   <p className="text-gray-600">
-                    Abbiamo ricevuto il tuo messaggio. Un membro del nostro team ti risponderà al più presto.
+                    We have received your message. A member of our team will get back to you soon.
                   </p>
                   <Button
                     variant="outline"
                     className="mt-6"
                     onClick={() => setSubmitted(false)}
                   >
-                    Invia un altro messaggio
+                    Send another message
                   </Button>
                 </div>
               ) : (
                 <>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Invia un messaggio</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                       <div className="space-y-2">
-                        <Label htmlFor="firstName">Nome</Label>
+                        <Label htmlFor="firstName">First Name</Label>
                         <Input id="firstName" required />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="lastName">Cognome</Label>
+                        <Label htmlFor="lastName">Last Name</Label>
                         <Input id="lastName" required />
                       </div>
                     </div>
@@ -151,19 +151,19 @@ const ContactPage = () => {
                       <Input id="email" type="email" required />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="company">Azienda</Label>
+                      <Label htmlFor="company">Company</Label>
                       <Input id="company" />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="subject">Oggetto</Label>
+                      <Label htmlFor="subject">Subject</Label>
                       <Input id="subject" required />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="message">Messaggio</Label>
+                      <Label htmlFor="message">Message</Label>
                       <Textarea id="message" rows={5} required />
                     </div>
                     <Button type="submit" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? 'Invio in corso...' : 'Invia messaggio'}
+                      {isSubmitting ? 'Sending...' : 'Send message'}
                     </Button>
                   </form>
                 </>

@@ -21,60 +21,60 @@ interface PricingTier {
 const pricingTiers: PricingTier[] = [
   {
     name: 'Base',
-    description: 'Perfetto per team HR di piccole dimensioni',
+    description: 'Perfect for small HR teams',
     price: {
       monthly: '€49',
       yearly: '€39',
     },
     features: [
-      'Fino a 200 candidati',
-      'Visualizzazione geografica di base',
-      'Filtri per ruolo e competenze',
-      '1 utente', 
-      'Esportazione dati (CSV)',
-      'Supporto email'
+      'Up to 200 candidates',
+      'Basic geographic visualization',
+      'Role and skills filters',
+      '1 user',
+      'Data export (CSV)',
+      'Email support'
     ],
-    cta: 'Inizia gratuitamente'
+    cta: 'Start for free'
   },
   {
     name: 'Pro',
-    description: 'Ideale per aziende in crescita',
+    description: 'Ideal for growing companies',
     price: {
       monthly: '€99',
       yearly: '€79',
     },
     features: [
-      'Fino a 1.000 candidati',
-      'Visualizzazione geografica avanzata',
-      'Tutti i filtri disponibili',
-      'Fino a 5 utenti',
-      'Analisi delle fonti di talento',
-      'Esportazione dati (CSV, Excel)',
-      'API integrate',
-      'Supporto prioritario'
+      'Up to 1,000 candidates',
+      'Advanced geographic visualization',
+      'All available filters',
+      'Up to 5 users',
+      'Talent source analysis',
+      'Data export (CSV, Excel)',
+      'Integrated API',
+      'Priority support'
     ],
-    cta: 'Prova 14 giorni gratis',
+    cta: 'Try 14 days free',
     popular: true
   },
   {
     name: 'Enterprise',
-    description: 'Per grandi aziende con esigenze complesse',
+    description: 'For large companies with complex needs',
     price: {
       monthly: '€249',
       yearly: '€199',
     },
     features: [
-      'Candidati illimitati',
-      'Visualizzazione geografica personalizzata',
-      'Dashboard analitici personalizzati',
-      'Utenti illimitati',
-      'Integrazione con i tuoi ATS',
-      'Esportazione dati avanzata',
-      'Funzionalità di reportistica',
-      'API personalizzate',
-      'Account manager dedicato'
+      'Unlimited candidates',
+      'Custom geographic visualization',
+      'Custom analytics dashboards',
+      'Unlimited users',
+      'Integration with your ATS',
+      'Advanced data export',
+      'Reporting features',
+      'Custom APIs',
+      'Dedicated account manager'
     ],
-    cta: 'Contattaci'
+    cta: 'Contact us'
   }
 ];
 
@@ -179,31 +179,31 @@ const PricingPage = () => {
         {/* FAQ Section */}
         <div className="max-w-5xl mx-auto mt-24 px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center text-gray-900">
-            Domande frequenti
+            Frequently Asked Questions
           </h2>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             <div>
-              <h3 className="text-xl font-medium text-gray-900">Posso cambiare piano in un secondo momento?</h3>
+              <h3 className="text-xl font-medium text-gray-900">Can I change plans later?</h3>
               <p className="mt-2 text-gray-500">
-                Certamente! Puoi passare a un piano superiore in qualsiasi momento. Se passi a un piano inferiore, la modifica verrà applicata al termine del periodo di fatturazione corrente.
+                Absolutely! You can upgrade to a higher plan at any time. If you downgrade, the change will be applied at the end of your current billing period.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium text-gray-900">Come funziona la prova gratuita?</h3>
+              <h3 className="text-xl font-medium text-gray-900">How does the free trial work?</h3>
               <p className="mt-2 text-gray-500">
-                La prova gratuita di 14 giorni ti offre accesso completo al piano Pro. Non è necessaria alcuna carta di credito per iniziare.
+                The 14-day free trial gives you full access to the Pro plan. No credit card required to start.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium text-gray-900">Cosa si intende per "candidato"?</h3>
+              <h3 className="text-xl font-medium text-gray-900">What counts as a "candidate"?</h3>
               <p className="mt-2 text-gray-500">
-                Un candidato è qualsiasi profilo caricato nel sistema. Puoi modificare, aggiornare o rimuovere i profili in qualsiasi momento senza influire sul conteggio.
+                A candidate is any profile uploaded to the system. You can modify, update, or remove profiles at any time without affecting the count.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium text-gray-900">È previsto un supporto per l'implementazione?</h3>
+              <h3 className="text-xl font-medium text-gray-900">Is implementation support included?</h3>
               <p className="mt-2 text-gray-500">
-                I clienti Enterprise ricevono un supporto completo per l'implementazione. Per i piani Base e Pro, offriamo guide dettagliate e supporto via email.
+                Enterprise customers receive full implementation support. For Base and Pro plans, we offer detailed guides and email support.
               </p>
             </div>
           </div>

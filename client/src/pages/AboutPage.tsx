@@ -57,33 +57,33 @@ const AboutPage = () => {
       {/* Values Section */}
       <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">I nostri valori</h2>
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our values</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Lightbulb className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Innovazione</h3>
+              <h3 className="text-xl font-bold mb-2">Innovation</h3>
               <p className="text-gray-600">
-                Spingiamo costantemente i confini di ciò che è possibile con dati e visualizzazioni, cercando sempre nuovi modi per aiutare i nostri clienti.
+                We constantly push the boundaries of what's possible with data and visualizations, always seeking new ways to help our customers.
               </p>
             </div>
             <div className="bg-white rounded-lg p-8 shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Users className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Collaborazione</h3>
+              <h3 className="text-xl font-bold mb-2">Collaboration</h3>
               <p className="text-gray-600">
-                Crediamo che le migliori soluzioni nascano dalla collaborazione con i nostri clienti, partner e tra i nostri team.
+                We believe the best solutions come from collaboration with our customers, partners, and within our teams.
               </p>
             </div>
             <div className="bg-white rounded-lg p-8 shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Award className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Eccellenza</h3>
+              <h3 className="text-xl font-bold mb-2">Excellence</h3>
               <p className="text-gray-600">
-                Ci impegniamo per l'eccellenza in tutto ciò che facciamo, dalla qualità del nostro prodotto al supporto che forniamo ai nostri clienti.
+                We strive for excellence in everything we do, from the quality of our product to the support we provide to our customers.
               </p>
             </div>
           </div>

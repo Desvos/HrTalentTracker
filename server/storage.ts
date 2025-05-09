@@ -1,7 +1,7 @@
-import { candidates, type Candidate, type InsertCandidate, users, type User, type InsertUser } from "@shared/schema";
+import { candidates, type Candidate, type InsertCandidate, users, type User, type InsertUser, cvs, type CV, type InsertCV, publicCVs, type PublicCV, type InsertPublicCV } from "@shared/schema";
 import { generateMockCandidates } from "@/lib/data";
 import { db } from "./db";
-import { eq, like, inArray, SQL, sql } from "drizzle-orm";
+import { eq, like, inArray, SQL, sql, desc } from "drizzle-orm";
 
 // Modify the interface with any CRUD methods
 export interface IStorage {
@@ -17,6 +17,14 @@ export interface IStorage {
   }): Promise<Candidate[]>;
   populateInitialData(): Promise<void>;
   isInitialized(): Promise<boolean>;
+  createCV(cv: InsertCV): Promise<CV>;
+  getCVById(id: number): Promise<CV | undefined>;
+  getCVsByUserId(userId: number): Promise<CV[]>;
+  updateCVStatus(id: number, status: string, errorMessage?: string): Promise<CV>;
+  createPublicCV(cv: InsertPublicCV): Promise<PublicCV>;
+  getPublicCVById(id: number): Promise<PublicCV | undefined>;
+  getPublicCVs(): Promise<PublicCV[]>;
+  updatePublicCVStatus(id: number, status: string, errorMessage?: string): Promise<PublicCV>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -156,6 +164,79 @@ export class DatabaseStorage implements IStorage {
     }
     
     return results;
+  }
+
+  async createCV(cv: InsertCV): Promise<CV> {
+    const [newCV] = await db
+      .insert(cvs)
+      .values(cv)
+      .returning();
+    return newCV;
+  }
+
+  async getCVById(id: number): Promise<CV | undefined> {
+    const results = await db
+      .select()
+      .from(cvs)
+      .where(eq(cvs.id, id));
+    return results[0];
+  }
+
+  async getCVsByUserId(userId: number): Promise<CV[]> {
+    return await db
+      .select()
+      .from(cvs)
+      .where(eq(cvs.userId, userId))
+      .orderBy(desc(cvs.createdAt));
+  }
+
+  async updateCVStatus(id: number, status: string, errorMessage?: string): Promise<CV> {
+    const [updatedCV] = await db
+      .update(cvs)
+      .set({
+        status,
+        errorMessage,
+        updatedAt: new Date()
+      })
+      .where(eq(cvs.id, id))
+      .returning();
+    return updatedCV;
+  }
+
+  async createPublicCV(cv: InsertPublicCV): Promise<PublicCV> {
+    const [newCV] = await db
+      .insert(publicCVs)
+      .values(cv)
+      .returning();
+    return newCV;
+  }
+
+  async getPublicCVById(id: number): Promise<PublicCV | undefined> {
+    const results = await db
+      .select()
+      .from(publicCVs)
+      .where(eq(publicCVs.id, id));
+    return results[0];
+  }
+
+  async getPublicCVs(): Promise<PublicCV[]> {
+    return await db
+      .select()
+      .from(publicCVs)
+      .orderBy(desc(publicCVs.createdAt));
+  }
+
+  async updatePublicCVStatus(id: number, status: string, errorMessage?: string): Promise<PublicCV> {
+    const [updatedCV] = await db
+      .update(publicCVs)
+      .set({
+        status,
+        errorMessage,
+        updatedAt: new Date()
+      })
+      .where(eq(publicCVs.id, id))
+      .returning();
+    return updatedCV;
   }
 }
 

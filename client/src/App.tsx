@@ -12,6 +12,7 @@ import PricingPage from "@/pages/PricingPage";
 import AboutPage from "@/pages/AboutPage";
 import FeaturesPage from "@/pages/FeaturesPage";
 import ContactPage from "@/pages/ContactPage";
+import PublicCVUploader from "@/pages/PublicCVUploader";
 import NotFound from "@/pages/not-found";
 
 function AppRoutes() {
@@ -27,6 +28,7 @@ function AppRoutes() {
       <Route path="/about" component={AboutPage} />
       <Route path="/features" component={FeaturesPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/public-cv-uploader" component={PublicCVUploader} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, jsonb, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -59,3 +59,40 @@ export const insertUserSchema = createInsertSchema(users).omit({ id: true });
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
+
+// Schema per i CV
+export const cvs = pgTable('cvs', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id').references(() => users.id).notNull(),
+  originalFileName: text('original_file_name').notNull(),
+  filePath: text('file_path').notNull(),
+  fileType: text('file_type').notNull(),
+  fileSize: integer('file_size').notNull(),
+  extractedData: jsonb('extracted_data').notNull(), // Dati estratti dall'OCR
+  status: text('status').notNull().default('pending'), // pending, processing, completed, error
+  errorMessage: text('error_message'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull()
+});
+
+export type CV = typeof cvs.$inferSelect;
+export type InsertCV = typeof cvs.$inferInsert;
+
+// Schema per i CV pubblici
+export const publicCVs = pgTable('public_cvs', {
+  id: serial('id').primaryKey(),
+  firstName: text('first_name').notNull(),
+  lastName: text('last_name').notNull(),
+  originalFileName: text('original_file_name').notNull(),
+  filePath: text('file_path').notNull(),
+  fileType: text('file_type').notNull(),
+  fileSize: integer('file_size').notNull(),
+  extractedData: jsonb('extracted_data').notNull(), // Dati estratti dall'OCR
+  status: text('status').notNull().default('pending'), // pending, processing, completed, error
+  errorMessage: text('error_message'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull()
+});
+
+export type PublicCV = typeof publicCVs.$inferSelect;
+export type InsertPublicCV = typeof publicCVs.$inferInsert;
