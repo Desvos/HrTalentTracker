@@ -92,32 +92,32 @@ const LandingPage = () => {
       {/* Benefits Section */}
       <section className="py-16 px-6 bg-muted/30">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Perché scegliere HR Talent Mapper</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose HR Talent Mapper</h2>
           <div className="space-y-6">
             <div className="flex items-start">
               <CheckCircle2 className="text-primary h-6 w-6 flex-shrink-0 mt-1 mr-4" />
               <div>
-                <h3 className="text-xl font-medium mb-1">Decisioni di assunzione più informate</h3>
+                <h3 className="text-xl font-medium mb-1">More Informed Hiring Decisions</h3>
                 <p className="text-muted-foreground">
-                  Comprendi dove si trova il talento e identifica nuove aree di recruitment per diversificare il tuo pool di candidati.
+                  Understand where talent is located and identify new recruitment areas to diversify your candidate pool.
                 </p>
               </div>
             </div>
             <div className="flex items-start">
               <CheckCircle2 className="text-primary h-6 w-6 flex-shrink-0 mt-1 mr-4" />
               <div>
-                <h3 className="text-xl font-medium mb-1">Ottimizzazione del budget di recruitment</h3>
+                <h3 className="text-xl font-medium mb-1">Recruitment Budget Optimization</h3>
                 <p className="text-muted-foreground">
-                  Concentra gli sforzi di recruitment nelle aree ad alto potenziale rispetto alle tue esigenze specifiche.
+                  Focus recruitment efforts in high-potential areas based on your specific needs.
                 </p>
               </div>
             </div>
             <div className="flex items-start">
               <CheckCircle2 className="text-primary h-6 w-6 flex-shrink-0 mt-1 mr-4" />
               <div>
-                <h3 className="text-xl font-medium mb-1">Interfaccia intuitiva</h3>
+                <h3 className="text-xl font-medium mb-1">Intuitive Interface</h3>
                 <p className="text-muted-foreground">
-                  Nessuna competenza tecnica richiesta. Dashboard chiare e facili da usare per tutto il team HR.
+                  No technical skills required. Clear and easy-to-use dashboards for the entire HR team.
                 </p>
               </div>
             </div>
@@ -128,15 +128,15 @@ const LandingPage = () => {
       {/* CTA Section */}
       <section className="py-16 px-6 bg-primary/5">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Pronto a trasformare il tuo processo di recruitment?</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to transform your recruitment process?</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Inizia oggi stesso a visualizzare e analizzare i dati dei candidati con HR Talent Mapper.
+            Start visualizing and analyzing candidate data with HR Talent Mapper today.
           </p>
           <Button 
             size="lg"
             onClick={() => navigate('/signup')}
           >
-            Crea un account gratuito
+            Create a free account
           </Button>
         </div>
       </section>
