@@ -14,7 +14,7 @@ const DashboardPage = () => {
     skill?: string;
     institution?: string;
   }>({});
-  
+
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -45,25 +45,23 @@ const DashboardPage = () => {
     if (filters.institution && !candidate.education.some(edu => edu.institutionName === filters.institution)) return false;
     return true;
   });
-  
+
   const handleFilterChange = (newFilters: { role?: string; skill?: string; institution?: string }) => {
     setFilters(newFilters);
   };
-  
+
   return (
     <AppLayout>
       <Helmet>
         <title>Dashboard | HR Talent Mapper</title>
         <meta name="description" content="Interactive talent mapping dashboard for HR professionals to visualize candidate distribution and talent hotspots." />
       </Helmet>
-      
+
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Talent Dashboard</h1>
         <p className="text-muted-foreground">Interactive visualization of your talent pool and recruitment hotspots</p>
       </div>
-      
-      <CandidateFilters onFilterChange={handleFilterChange} />
-      
+
       {isLoading ? (
         <div className="flex justify-center items-center h-[600px] bg-white rounded-lg shadow-sm">
           <p>Loading candidate data...</p>
@@ -74,11 +72,20 @@ const DashboardPage = () => {
         </div>
       ) : (
         <>
-          <CandidateMap candidates={filteredCandidates} />
-          <MapLegend />
+          {/* <CandidateMap candidates={filteredCandidates} /> */}
+          <div className="mt-6 h-[calc(100vh-200px)]">
+            <iframe
+              src="/map.htm"
+              className="w-full h-full border-0 rounded-lg shadow-sm"
+              title="External Content"
+            />
+          </div>
+          <br /><br />
           <CandidateTable candidates={filteredCandidates} />
         </>
       )}
+
+
     </AppLayout>
   );
 };
