@@ -65,22 +65,27 @@ const CandidateFilters = ({ onFilterChange }: CandidateFiltersProps) => {
       <CardContent className="pt-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
-            <Label>Filter by Role</Label>
-            <Select
-              value={selectedRole}
-              onValueChange={setSelectedRole}
-              disabled={isLoading}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="All Roles" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all_roles">All Roles</SelectItem>
-                {filterData.roles.map((role) => (
-                  <SelectItem key={role} value={role}>{role}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label htmlFor="role-search">Search by Role</Label>
+            <div className="relative">
+              <input
+                id="role-search"
+                type="text"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="Enter role (e.g. Software Engineer)"
+                value={selectedRole === 'all_roles' ? '' : selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value || 'all_roles')}
+                disabled={isLoading}
+              />
+              {selectedRole !== 'all_roles' && (
+                <button
+                  type="button"
+                  className="absolute right-2 top-0 h-10 w-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
+                  onClick={() => setSelectedRole('all_roles')}
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           </div>
           
           <div className="space-y-2">

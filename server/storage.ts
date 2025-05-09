@@ -124,7 +124,10 @@ export class DatabaseStorage implements IStorage {
     
     // Apply role filter at DB level if possible
     if (filters.role) {
-      baseQuery = baseQuery.where(eq(candidates.role, filters.role));
+      // Use case-insensitive partial text matching instead of exact matching
+      baseQuery = baseQuery.where(
+        sql`lower(${candidates.role}) like lower(${'%' + filters.role + '%'})`
+      );
     }
     
     // Get properly typed candidate results
