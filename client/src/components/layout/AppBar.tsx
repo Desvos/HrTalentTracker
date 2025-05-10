@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'wouter';
-import { useAuth } from '../../contexts/AuthContext';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Link, useLocation } from "wouter";
+import { useAuth } from "../../contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { MapPin, Menu, X, User } from 'lucide-react';
+} from "@/components/ui/dropdown-menu";
+import { MapPin, Menu, X, User } from "lucide-react";
 
 const AppBar = () => {
   const [location] = useLocation();
@@ -26,64 +26,78 @@ const AppBar = () => {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="flex items-center">
-                  <MapPin className="h-8 w-8 text-primary" />
-                  <span className="ml-2 text-xl font-bold">HR Talent Mapper</span>
+                <MapPin className="h-8 w-8 text-primary" />
+                <span className="ml-2 text-xl font-bold">TalentMatch.ai</span>
               </Link>
             </div>
             <nav className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link 
+              <Link
                 href="/"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  location === '/' && !isAuthenticated ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  location === "/" && !isAuthenticated
+                    ? "border-primary text-gray-900"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 }`}
               >
                 Home
               </Link>
-              <Link 
+              <Link
                 href="/features"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  location === '/features' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  location === "/features"
+                    ? "border-primary text-gray-900"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 }`}
               >
                 Features
               </Link>
-              <Link 
+              <Link
                 href="/pricing"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  location === '/pricing' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  location === "/pricing"
+                    ? "border-primary text-gray-900"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 }`}
               >
                 Pricing
               </Link>
-              <Link 
+              <Link
                 href="/about"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  location === '/about' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  location === "/about"
+                    ? "border-primary text-gray-900"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 }`}
               >
                 About Us
               </Link>
-              <Link 
+              <Link
                 href="/contact"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  location === '/contact' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  location === "/contact"
+                    ? "border-primary text-gray-900"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 }`}
               >
                 Contact
               </Link>
-              <Link 
+              <Link
                 href="/public-cv-uploader"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  location === '/public-cv-uploader' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  location === "/public-cv-uploader"
+                    ? "border-primary text-gray-900"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 }`}
               >
                 Carica CV
               </Link>
               {isAuthenticated && (
-                <Link 
+                <Link
                   href="/dashboard"
                   className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                    location === '/dashboard' ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    location === "/dashboard"
+                      ? "border-primary text-gray-900"
+                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   }`}
                 >
                   Dashboard
@@ -111,9 +125,7 @@ const AppBar = () => {
                       Dashboard
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={logout}>
-                    Logout
-                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
@@ -149,59 +161,73 @@ const AppBar = () => {
       {isMenuOpen && (
         <div className="sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
-            <Link 
+            <Link
               href="/"
               className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                location === '/' && !isAuthenticated ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                location === "/" && !isAuthenticated
+                  ? "border-primary text-primary bg-primary/10"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               Home
             </Link>
-            <Link 
+            <Link
               href="/features"
               className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                location === '/features' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                location === "/features"
+                  ? "border-primary text-primary bg-primary/10"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               Features
             </Link>
-            <Link 
+            <Link
               href="/pricing"
               className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                location === '/pricing' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                location === "/pricing"
+                  ? "border-primary text-primary bg-primary/10"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               Pricing
             </Link>
-            <Link 
+            <Link
               href="/about"
               className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                location === '/about' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                location === "/about"
+                  ? "border-primary text-primary bg-primary/10"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               About Us
             </Link>
-            <Link 
+            <Link
               href="/contact"
               className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                location === '/contact' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                location === "/contact"
+                  ? "border-primary text-primary bg-primary/10"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               Contact
             </Link>
-            <Link 
+            <Link
               href="/public-cv-uploader"
               className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                location === '/public-cv-uploader' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                location === "/public-cv-uploader"
+                  ? "border-primary text-primary bg-primary/10"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               Carica CV
             </Link>
             {isAuthenticated && (
-              <Link 
+              <Link
                 href="/dashboard"
                 className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                  location === '/dashboard' ? 'border-primary text-primary bg-primary/10' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                  location === "/dashboard"
+                    ? "border-primary text-primary bg-primary/10"
+                    : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
                 }`}
               >
                 Dashboard
@@ -218,18 +244,22 @@ const AppBar = () => {
                     </div>
                   </div>
                   <div className="ml-3">
-                    <div className="text-base font-medium text-gray-800">{user?.fullName || user?.username}</div>
-                    <div className="text-sm font-medium text-gray-500">{user?.email}</div>
+                    <div className="text-base font-medium text-gray-800">
+                      {user?.fullName || user?.username}
+                    </div>
+                    <div className="text-sm font-medium text-gray-500">
+                      {user?.email}
+                    </div>
                   </div>
                 </div>
                 <div className="mt-3 space-y-1">
-                  <Link 
+                  <Link
                     href="/profile"
                     className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                   >
                     Profile
                   </Link>
-                  <Link 
+                  <Link
                     href="/dashboard"
                     className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                   >
@@ -245,13 +275,13 @@ const AppBar = () => {
               </>
             ) : (
               <div className="mt-3 space-y-1 px-2">
-                <Link 
+                <Link
                   href="/login"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 >
                   Login
                 </Link>
-                <Link 
+                <Link
                   href="/signup"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 >

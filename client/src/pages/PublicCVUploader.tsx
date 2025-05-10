@@ -1,92 +1,100 @@
-import { useState, useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Progress } from '@/components/ui/progress';
-import { apiRequest } from '@/lib/queryClient';
-import { toast } from 'sonner';
-import PublicLayout from '@/components/layout/PublicLayout';
+import { useState, useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
+import { apiRequest } from "@/lib/queryClient";
+import { toast } from "sonner";
+import PublicLayout from "@/components/layout/PublicLayout";
 
 const PublicCVUploader = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    const file = acceptedFiles[0];
-    if (!file) return;
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      const file = acceptedFiles[0];
+      if (!file) return;
 
-    if (!firstName.trim() || !lastName.trim()) {
-      toast.error('Please enter your first and last name');
-      return;
-    }
+      if (!firstName.trim() || !lastName.trim()) {
+        toast.error("Please enter your first and last name");
+        return;
+      }
 
-    // Verifica il tipo di file
-    if (!file.type.includes('pdf') && !file.type.includes('image')) {
-      toast.error('Only PDF and image files are supported');
-      return;
-    }
+      // Verifica il tipo di file
+      if (!file.type.includes("pdf") && !file.type.includes("image")) {
+        toast.error("Only PDF and image files are supported");
+        return;
+      }
 
-    try {
-      setIsUploading(true);
-      setUploadProgress(0);
+      try {
+        setIsUploading(true);
+        setUploadProgress(0);
 
-      const formData = new FormData();
-      formData.append('cv', file);
-      formData.append('firstName', firstName.trim());
-      formData.append('lastName', lastName.trim());
+        const formData = new FormData();
+        formData.append("cv", file);
+        formData.append("firstName", firstName.trim());
+        formData.append("lastName", lastName.trim());
 
-      const response = await apiRequest('POST', '/api/public/cv/upload', {
-        data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent: { loaded: number; total?: number }) => {
-          const progress = progressEvent.total
-            ? Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            : 0;
-          setUploadProgress(progress);
-        },
-      });
+        const response = await apiRequest("POST", "/api/public/cv/upload", {
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent: {
+            loaded: number;
+            total?: number;
+          }) => {
+            const progress = progressEvent.total
+              ? Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              : 0;
+            setUploadProgress(progress);
+          },
+        });
 
-      toast.success('CV uploaded successfully');
-      setFirstName('');
-      setLastName('');
-      setIsSuccess(true);
-    } catch (error) {
-      console.error('Error during upload:', error);
-      toast.error('Error uploading CV');
-    } finally {
-      setIsUploading(false);
-      setUploadProgress(0);
-    }
-  }, [firstName, lastName]);
+        toast.success("CV uploaded successfully");
+        setFirstName("");
+        setLastName("");
+        setIsSuccess(true);
+      } catch (error) {
+        console.error("Error during upload:", error);
+        toast.error("Error uploading CV");
+      } finally {
+        setIsUploading(false);
+        setUploadProgress(0);
+      }
+    },
+    [firstName, lastName]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'application/pdf': ['.pdf'],
-      'image/*': ['.png', '.jpg', '.jpeg']
+      "application/pdf": [".pdf"],
+      "image/*": [".png", ".jpg", ".jpeg"],
     },
     maxFiles: 1,
-    disabled: isUploading
+    disabled: isUploading,
   });
 
   if (isSuccess) {
     return (
       <PublicLayout
-        title="Upload CV - HR Talent Mapper"
+        title="Upload CV - TalentMatch.ai"
         description="Upload your CV to join our talent database"
       >
         <Card className="w-full max-w-2xl mx-auto">
           <CardContent className="pt-6 text-center space-y-4">
-            <h2 className="text-2xl font-semibold text-green-600">Thank you for uploading your CV!</h2>
+            <h2 className="text-2xl font-semibold text-green-600">
+              Thank you for uploading your CV!
+            </h2>
             <p>
-              We have received your CV and will review it shortly.
-              We will contact you if your profile matches our requirements.
+              We have received your CV and will review it shortly. We will
+              contact you if your profile matches our requirements.
             </p>
             <button
               onClick={() => setIsSuccess(false)}
@@ -102,7 +110,7 @@ const PublicCVUploader = () => {
 
   return (
     <PublicLayout
-      title="Upload CV - HR Talent Mapper"
+      title="Upload CV - TalentMatch.ai"
       description="Upload your CV to join our talent database"
     >
       <div className="container mx-auto py-8">
@@ -110,7 +118,8 @@ const PublicCVUploader = () => {
           <div className="text-center space-y-4">
             <h1 className="text-3xl font-bold">Upload your CV</h1>
             <p className="text-muted-foreground">
-              Fill out the form below to upload your CV. Our recruiters will review it as soon as possible.
+              Fill out the form below to upload your CV. Our recruiters will
+              review it as soon as possible.
             </p>
           </div>
 
@@ -145,8 +154,16 @@ const PublicCVUploader = () => {
               <div
                 {...getRootProps()}
                 className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
-                  ${isDragActive ? 'border-primary bg-primary/10' : 'border-muted-foreground/25'}
-                  ${isUploading ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary'}`}
+                  ${
+                    isDragActive
+                      ? "border-primary bg-primary/10"
+                      : "border-muted-foreground/25"
+                  }
+                  ${
+                    isUploading
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:border-primary"
+                  }`}
               >
                 <input {...getInputProps()} />
                 {isUploading ? (
@@ -170,7 +187,9 @@ const PublicCVUploader = () => {
 
           <Card>
             <CardContent className="pt-6">
-              <h2 className="text-xl font-semibold mb-4">Why upload your CV?</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                Why upload your CV?
+              </h2>
               <ul className="space-y-2 text-muted-foreground">
                 <li>• Join our talent database</li>
                 <li>• Be considered for future opportunities</li>
@@ -185,4 +204,4 @@ const PublicCVUploader = () => {
   );
 };
 
-export default PublicCVUploader; 
+export default PublicCVUploader;

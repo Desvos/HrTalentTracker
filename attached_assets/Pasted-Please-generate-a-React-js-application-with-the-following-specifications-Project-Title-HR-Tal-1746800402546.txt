@@ -1,6 +1,6 @@
 Please generate a React.js application with the following specifications:
 
-**Project Title:** HR Talent Mapper
+**Project Title:** TalentMatch.ai
 
 **Core Functionality:**
 The application is an HR tool designed to visualize the geographical distribution of company resources (employees/candidates) and identify key talent hotspots (e.g., universities, campuses) based on candidate data.
